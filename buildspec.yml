@@ -13,8 +13,11 @@ phases:
       - chmod 400 ec2-key.pem
   build:
     commands:
-      - echo Deploying to EC2 server...
-      - scp -i ec2-key.pem -o StrictHostKeyChecking=no index.php ubuntu@3.107.49.205:/var/www/html/index.php
+      - echo "Checking working directory..."
+      - pwd
+      - ls -la
+      - echo "Deploying to EC2 server..."
+      - scp -i ec2-key.pem -o StrictHostKeyChecking=no php-docs-hello-world/index.php ubuntu@3.107.49.205:/var/www/html/index.php
 
 artifacts:
   files:
