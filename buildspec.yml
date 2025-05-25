@@ -4,7 +4,8 @@ phases:
   install:
     commands:
       - echo "No runtime install needed"
-      - yum install -y openssh-clients
+      - apt-get update
+      - apt-get install -y openssh-client
   pre_build:
     commands:
       - echo Decoding private key from environment variable...
@@ -13,7 +14,7 @@ phases:
   build:
     commands:
       - echo Deploying to EC2 server...
-      - scp -i ec2-key.pem -o StrictHostKeyChecking=no index.php ubuntu@<EC2_PUBLIC_IP>:/var/www/html/index.php
+      - scp -i ec2-key.pem -o StrictHostKeyChecking=no index.php ubuntu@3.107.49.205:/var/www/html/index.php
 
 artifacts:
   files:
