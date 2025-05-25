@@ -1,1 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      php: 8.0
+    commands:
+      - echo Installing PHP dependencies (if any)
+  build:
+    commands:
+      - echo Building PHP Hello World
+  post_build:
+    commands:
+      - echo Build completed on `date`
+
+artifacts:
+  files:
+    - '**/*'
 
