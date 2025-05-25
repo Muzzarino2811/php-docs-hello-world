@@ -3,7 +3,9 @@
   "Statement": [
     {
       "Effect": "Allow",
-      "Principal": { "Service": "codebuild.amazonaws.com" },
+      "Principal": {
+        "Service": "codepipeline.amazonaws.com"
+      },
       "Action": "sts:AssumeRole"
     }
   ]

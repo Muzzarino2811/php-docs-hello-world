@@ -3,17 +3,19 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      php: 8.0
+      php: 8.1
     commands:
-      - echo Installing PHP dependencies (if any)
+      - echo Installing ssh client...
+      - yum install -y openssh-clients
+  pre_build:
+    commands:
+      - echo Decoding private key from environment variable...
+      - echo $EC2_DEPLOY_KEY | base64 -d > ec2-key.pem
+      - chmod 400 ec2-key.pem
   build:
     commands:
-      - echo Building PHP Hello World
-  post_build:
-    commands:
-      - echo Build completed on `date`
-
+      - echo Deploying to EC2 server...
+      - scp -i ec2-key.pem -o StrictHostKeyChecking=no index.php ubuntu@3.107.49.205:/var/www/html/index.php
 artifacts:
   files:
-    - '**/*'
-
+    - index.php
